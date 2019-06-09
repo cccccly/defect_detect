@@ -1,0 +1,102 @@
+{% load wagtailimages_tags wagtailadmin_tags %}
+{% load i18n %}
+{% if images %}
+    {% if is_searching %}
+        <h2>
+        {% blocktrans count counter=images.paginator.count %}
+            There is {{ counter }} match
+        {% plural %}
+            There are {{ counter }} matches
+        {% endblocktrans %}
+        </h2>
+
+        {% search_other %}
+    {% else %}
+        <h2>{% trans "检测近期上传所有未检测过的图片" %}</h2>
+    {% endif %}
+
+    <a class="button" href="http://127.0.0.1:8000/images/">
+        检测
+    </a>
+
+    <form action="{% url 'wagtailimages:index' %}" method="post" enctype="multipart/form-data" novalidate>
+        {% csrf_token %}
+        <label for="BatchNum">产品编号</label>
+        <select name="BatchNum" id="BatchNum">
+            {% for cur in BatchNums %}
+                <option value={{ cur }}>{{ cur }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="Specs">产品规格</label>
+        <select name="Specs" id="Specs">
+            {% for cur in Specs %}
+                <option value={{ cur }}>{{ cur }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="HasDefect">有无瑕疵</label>
+        <select name="HasDefect" id="HasDefect">
+            <option value=2>全部</option>
+            <option value=1>有</option>
+            <option value=0>无</option>
+        </select>
+
+        <label for="DefectType">DefectType</label>
+        <select name="DefectType" id="DefectType">
+            <option value="全部">全部</option>
+            <option value="无瑕疵">无瑕疵</option>
+            <option value="浆斑">浆斑</option>
+            <option value="停车痕（紧）">停车痕（紧）</option>
+            <option value="停车痕（松）">停车痕（松）</option>
+            <option value="并纬">并纬</option>
+            <option value="擦白">擦白</option>
+            <option value="擦伤">擦伤</option>
+            <option value="糙纬">糙纬</option>
+            <option value="错花">错花</option>
+            <option value="断经1">断经1</option>
+            <option value="断经2">断经2</option>
+            <option value="断纬">断纬</option>
+            <option value="尽机">尽机</option>
+            <option value="经条">经条</option>
+            <option value="空织">空织</option>
+            <option value="起机">起机</option>
+            <option value="缺纬1">缺纬1</option>
+            <option value="缺纬2">缺纬2</option>
+            <option value="缩纬">缩纬</option>
+            <option value="折返">折返</option>
+            <option value="其他">其他</option>
+        </select>
+
+        <br>
+        <br>
+        <div class="u-hidden@xs" id="sbm">
+            <input type="submit" value="{% trans '筛选' %}" class="button" />
+        </div>
+        <br>
+    </form>
+
+    <ul class="listing horiz images">
+        {% for image in images %}
+            <li>
+                <a class="image-choice" title="{% if collections %}{{ image.collection.name }} » {% endif %}{{ image.title }}" href="{% url 'wagtailimages:edit' image.id %}">
+                    {% include "wagtailimages/images/results_image.html" %}
+                    <h3>{{ image.title|ellipsistrim:60 }}</h3>
+                    <h3>{{ image.DefectType|ellipsistrim:60 }}</h3>
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    {% include "wagtailadmin/shared/pagination_nav.html" with items=images %}
+
+{% else %}
+    {% if is_searching %}
+        <h2>{% blocktrans %}Sorry, no images match "<em>{{ query_string }}</em>"{% endblocktrans %}</h2>
+
+        {% search_other %}
+    {% else %}
+
+        <p>没有任何结果</p>
+    {% endif %}
+{% endif %}

@@ -1,0 +1,164 @@
+/*
+    * Plugin :  an-skill-bar
+    * Version: 1.0.1
+    * Description: A plugin that fills bars with a percentage you set.
+    * Author: Hasan Misbah
+    * Copyright 2018, Hasan Misbah
+    * Free to use and abuse under the MIT license.
+    * http://www.opensource.org/licenses/mit-license.php
+    */.skillbar{
+        width:100%;
+        padding:10px;
+        margin:10px 0;
+        position:relative;
+        display:block;
+        overflow:hidden;
+        height:30px;
+        background-color:#fff;
+        border-radius:5px 0 0 5px
+        }
+      .skillbar.bingwei .title{
+        background-color:#42b1b0
+      }
+      .skillbar.bingwei .filled{
+        background-color:#6cc0bd
+      }
+      .skillbar.yw .title{
+        background-color:#f0b517
+      }
+      .skillbar.yw .filled{
+        background-color:#f8e5b1
+      }
+      .skillbar.擦白 .title{
+        background-color:#02d6de
+      }
+      .skillbar.擦白 .filled{
+        background-color:#ace7e9
+      }
+
+      .skillbar.擦伤 .title{
+        background-color:#017499
+      }
+      .skillbar.擦伤 .filled{
+        background-color:#558899
+      }
+      .skillbar.停车痕 .title{
+        background-color:#ec7266
+      }
+      .skillbar.停车痕 .filled{
+        background-color:#f3a5a0
+      }
+      .skillbar.糙纬 .title{
+        background-color:#2cc0a6
+      }
+      .skillbar.糙纬 .filled{
+        background-color:#9addc6
+      }
+      .skillbar.错花 .title{
+        background-color:#83618c
+      }
+      .skillbar.错花 .filled{
+        background-color:#cc8eb6
+      }
+
+
+      .skillbar.断经 .title{
+        background-color:#33c7f0
+      }
+      .skillbar.断经 .filled{
+        background-color:#7adbf5
+      }
+      .skillbar.断纬 .title{
+        background-color:#456e46
+      }
+      .skillbar.断纬 .filled{
+        background-color:#92af84
+      }
+      .skillbar.浆斑 .title{
+        background-color:#cc872e
+      }
+      .skillbar.浆斑 .filled{
+        background-color:#d5b38b
+      }
+      .skillbar.尽机 .title{
+        background-color:#1abc9c
+      }
+      .skillbar.尽机 .filled{
+        background-color:#dbfaf4
+      }
+      .skillbar.经条 .title{
+        background-color:#6ab0de
+      }
+      .skillbar.经条 .filled{
+        background-color:#e7f2fa
+      }
+      .skillbar.空织 .title{
+        background-color:#dc80bf
+      }
+      .skillbar.空织 .filled{
+        background-color:#fec3ed
+      }
+      .skillbar.起机 .title{
+        background-color:#28917c
+      }
+      .skillbar.起机 .filled{
+        background-color:#6ea298
+      }
+      .skillbar.缺纬 .title{
+        background-color:#68cb4e
+      }
+      .skillbar.缺纬 .filled{
+        background-color:#ace1a1
+      }
+
+      .skillbar.缩纬 .title{
+        background-color:#3f4e74
+      }
+      .skillbar.缩纬 .filled{
+        background-color:#6e76a2
+      }
+      .skillbar.折返 .title{
+        background-color:#5c5f5f
+      }
+      .skillbar.折返 .filled{
+        background-color:#b2caca
+      }
+      .skillbar.其他 .title{
+        background-color:#5c5f5f
+      }
+      .skillbar.其他 .filled{
+        background-color:#b2caca
+      }
+
+
+      .skillbar .title{
+        background-color:rgba(0,0,0,.6);
+        height:30px;
+        width:85px;
+        text-align:center;
+        left:0;
+        color:#f0f0f0;
+        border-radius:5px 0 0 5px
+      }
+      .skillbar .percent,.skillbar .title{
+        padding:5px;
+        position:absolute;
+        top:0;
+        z-index:9
+      }
+      .skillbar .percent{
+        right:0;
+        color:#000;
+        font-weight:700
+      }
+      .skillbar .filled{
+        z-index:8;
+        position:absolute;
+        top:0;
+        left:0;
+        background-color:rgba(0,80,80,.3);
+        height:100%;
+        width:20px;
+        border-radius:5px 0 0 5px}
+
+/*# sourceMappingURL=an-skill-bar.css.map */

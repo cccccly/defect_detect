@@ -1,0 +1,7 @@
+# 忽略文件  忽略如下文件
+#/venv 虚拟环境所创建的包
+#/.idea pycharm的个人配置
+#/media 数据库的图片集合
+/venv
+/.idea
+/media

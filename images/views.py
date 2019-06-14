@@ -157,7 +157,7 @@ class Unit(nn.Module):
 
 
 class CNN(nn.Module):  #定义64层的深度神经网络结构
-    def __init__(self,num_classes=21):
+    def __init__(self,num_classes=22):
         super(CNN, self).__init__()
 
         self.unit1 = Unit(in_channels=3, out_channels=32)  #(32,32,32)
@@ -190,7 +190,7 @@ class CNN(nn.Module):  #定义64层的深度神经网络结构
                                  self.unit7, self.pool2, self.unit8, self.unit9, self.unit10, self.unit11, self.pool3,
                                  self.unit12, self.unit13, self.unit14, self.avgpool)
 
-        self.out = nn.Linear(128, 21)
+        self.out = nn.Linear(128, 22)
 
 
     def forward(self, input):
@@ -201,7 +201,7 @@ class CNN(nn.Module):  #定义64层的深度神经网络结构
 
 checkpoint = torch.load(os.path.dirname(os.path.dirname(__file__))+'/media/cnn_params.pkl')
 #导入训练好的模型参数
-model = CNN(num_classes = 21)
+model = CNN(num_classes = 22)
 model.load_state_dict(checkpoint)
 model.eval()
 
@@ -286,7 +286,7 @@ def detect(request):
            '4': "并纬", '5': "折返", '6': "擦伤", '7': "擦白", '8': "断纬",
            '9': "断经1", '10': "断经2", '11': "油污", '12': "浆斑",
            '13': "空织", '14': "糙纬", '15': "经条", '16': "缩纬",
-           '17': "缺纬1", '18': "缺纬2", '19': "起机", '20': "错花"}
+           '17': "缺纬1", '18': "缺纬2", '19': "起机", '20': "错花", '21': "无瑕疵"}
 
     mediaPath = os.path.dirname(os.path.dirname(__file__))+'/media'
 

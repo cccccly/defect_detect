@@ -1,0 +1,53 @@
+{% extends "wagtailadmin/base.html" %}
+{% load wagtailimages_tags %}
+{% load i18n %}
+{% block extra_css %}
+
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+{% endblock %}
+{% block titletag %}{% trans "Images" %}{% endblock %}
+
+{% block content %}
+    {% trans "Images" as im_str %}
+
+    {% if user_can_add %}
+        {% trans "Add an image" as add_img_str %}
+        {% include "wagtailadmin/shared/header.html" with title=im_str add_link="wagtailimages:add_multiple" icon="image" add_text=add_img_str search_url="wagtailimages:index" %}
+    {% else %}
+        {% include "wagtailadmin/shared/header.html" with title=im_str icon="image" search_url="wagtailimages:index" %}
+    {% endif %}
+    <div class="nice-padding">
+        <div id="prog_out" class="progress progress-striped active">
+            <div id="prog_in" class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 42%;">
+            </div>
+        </div>
+{#    <a class="button" href="http://127.0.0.1:8000/images/" onclick="submit_query()">#}
+{#        检测#}
+{#    </a>#}
+    <button type="button" class="btn btn-default" onclick="submit_query()">提交</button>
+    <script>
+        function submit_query(btn){
+        var sitv = setInterval(function(){
+            var prog_url = "http://127.0.0.1:8000/progress/";                   // prog_url指请求进度的url，后面会在django中设置
+            $.getJSON(prog_url, function(res){
+                $('#prog_in').width(res + '%');     // 改变进度条进度，注意这里是内层的div， res是后台返回的进度
+            });
+        }, 1000);                                 // 每1秒查询一次后台进度
+
+        var this_url = "http://127.0.0.1:8000/images/";                        // 指当前页面的url
+        var yourjson = "http://127.0.0.1:8000/progress/";
+        var params = {id:1,name:'tom'};
+        $.get(this_url,function (res) {
+            clearInterval(sitv);                   // 此时请求成功返回结果了，结束对后台进度的查询
+            $('#prog_out').attr("class", "progress"); // 修改进度条外层div的class, 改为完成形态
+
+        });
+    }
+    </script>
+
+
+    </div>
+
+{% endblock %}

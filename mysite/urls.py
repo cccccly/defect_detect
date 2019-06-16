@@ -8,6 +8,7 @@ from wagtail.documents import urls as wagtaildocs_urls
 
 from search import views as search_views
 from images import views as images_views
+from images import urls as images_urls
 from dataAnalyze import views as data_views
 urlpatterns = [
     url(r'^django-admin/', admin.site.urls),
@@ -18,6 +19,10 @@ urlpatterns = [
     url(r'^search/$', search_views.search, name='search'),
 
     url(r'^images/', images_views.detect, name='detect'),
+
+    url(r'^index/', images_views.index, name='index'),
+
+    url(r'^progress/', images_views.progress, name='progress'),
 
     url(r'^excel_export/', data_views.excel_export, name='excel_export'),
     # For anything not caught by a more specific rule above, hand over to

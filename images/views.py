@@ -11,7 +11,7 @@ import numpy as np
 
 from wagtail.admin import messages
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from images.models import CustomImage
 from dataAnalyze.models import StaticsDetail
 from django.core.exceptions import ObjectDoesNotExist
@@ -26,6 +26,9 @@ permission_checker = PermissionPolicyChecker(permission_policy)
 
 extension_ratio = 1
 ratio = 0.5
+#progress
+num_progress = 0
+
 # 创建Gabor滤波核
 def BuildGaborKernels(ksize=5, lamda=2, sigma=1.12):
     # 生成多尺度，多方向的Gabor特征
@@ -291,6 +294,11 @@ def detect(request):
     mediaPath = os.path.dirname(os.path.dirname(__file__))+'/media'
 
     images = CustomImage.objects.filter(IsDetect=False)
+    avg = 1 / images.count()
+
+    global num_progress
+
+
 
     for cur in images:
         global extension_ratio
@@ -351,15 +359,14 @@ def detect(request):
 
         # 11.选取最小外接矩形
         contours, hierarchy = cv2.findContours(result, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-        print(contours)
 
         pt_x = 0  # 若输出的疵点坐标为（0，0）则表示图像中没有瑕疵 中心点
         pt_y = 0
         pt_height = 0
         pt_width = 0
         num = np.size(contours)
-        print(num)
         hasDefect = False
+
 
         if num > 0:
             hasDefect = True
@@ -454,7 +461,7 @@ def detect(request):
             elif cur.DefectType == "其他":
                 scur.QT += 1
         scur.save()
-
+        num_progress = num_progress + avg
     images = CustomImage.objects.all()
 
     batchNum = Document.objects.values('BatchNum').distinct()
@@ -466,17 +473,29 @@ def detect(request):
     for i in range(len(spec)):
         Specs.append(spec[i]['Specs'])
 
-    messages.success(request, ("成功检测完毕!!"))
-    collections = permission_policy.collections_user_has_any_permission_for(
-        request.user, ['add', 'change']
-    )
+    # messages.success(request, ("成功检测完毕!!"))
+    # collections = permission_policy.collections_user_has_any_permission_for(
+    #     request.user, ['add', 'change']
+    # )
 
-    return render(request, 'wagtailimages/images/index.html', {
-            'images': images,
-            'query_string': None,
-            'is_searching': bool(None),
-            'BatchNums': BatchNums,
-            'Specs': Specs,
+    # return render(request, 'wagtailimages/images/index.html', {
+    #         'images': images,
+    #         'query_string': None,
+    #         'is_searching': bool(None),
+    #         'BatchNums': BatchNums,
+    #         'Specs': Specs,
+    #
+    #         'user_can_add': permission_policy.user_has_permission(request.user, 'add'),
+    #     })
+    return render(request, 'index.html', {
+        'res' : 1,
+    })
 
-            'user_can_add': permission_policy.user_has_permission(request.user, 'add'),
+def progress(request):
+    return JsonResponse(num_progress*100, safe=False)
+
+
+def index(request):
+    return render(request, 'index.html', {
+
         })

@@ -45,6 +45,14 @@ def register_images_menu_item():
         name='images', classnames='icon icon-image', order=300
     )
 
+#shangchuan
+@hooks.register('register_admin_menu_item')
+def register_images_menu_item():
+    return ImagesMenuItem(
+        _('图片上传'), reverse('wagtailimages:add_multiple'),
+        name='images', classnames='icon icon-image', order=50
+    )
+
 
 @hooks.register('insert_editor_js')
 def editor_js():

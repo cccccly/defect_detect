@@ -1,5 +1,7 @@
 {% load wagtailimages_tags wagtailadmin_tags %}
 {% load i18n %}
+{% load static %}
+
 {% if images %}
     {% if is_searching %}
         <h2>
@@ -15,9 +17,7 @@
         <h2>{% trans "检测近期上传所有未检测过的图片" %}</h2>
     {% endif %}
 
-    <a class="button" href="http://127.0.0.1:8000/images/">
-        检测
-    </a>
+
 
     <form action="{% url 'wagtailimages:index' %}" method="post" enctype="multipart/form-data" novalidate>
         {% csrf_token %}

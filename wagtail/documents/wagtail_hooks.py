@@ -52,7 +52,16 @@ def register_documents_menu_item():
         classnames='icon icon-doc-full-inverse',
         order=400
     )
-
+#shangchuan
+@hooks.register('register_admin_menu_item')
+def register_documents_menu_item():
+    return DocumentsMenuItem(
+        _('文档上传'),
+        reverse('wagtaildocs:add_multiple'),
+        name='documents',
+        classnames='icon icon-doc-full-inverse',
+        order=400
+    )
 
 @hooks.register('insert_editor_js')
 def editor_js():

@@ -12,13 +12,6 @@
     {% trans "统计分析" as snippets_str %}
     {% include "wagtailadmin/shared/header.html" with title=snippets_str icon="snippet" %}
 
-    <link rel="stylesheet" type="text/css" href="{% static 'wagtailsnippets/css/forms/analysis.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'wagtailsnippets/css/forms/normalize.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'wagtailsnippets/css/forms/demo.css' %}">
-    <!--核心样式-->
-    <link rel="stylesheet" href="{% static 'wagtailsnippets/css/forms/an-skill-bar.css' %}">
-    <link rel="stylesheet" href="{% static 'wagtailsnippets/css/forms/main.css' %}">
-
 
     <form action="{% url 'wagtailsnippets:index' %}" method="post" enctype="multipart/form-data" novalidate style="margin: 0px 100px 0px 100px">
         {% csrf_token %}
@@ -41,66 +34,47 @@
         <br>
     </form>
 
+    <div style="height: 1200px;width: 1400px;">
+{#        <div id = "s1" style="height: 500px;width: 500px;float: left">#}
+{#            {% include "wagtailsnippets/statistics/s1.html" %}#}
+{#        </div>#}
+{#        <div id = "s2" style="height: 500px;width: 500px;float: left">#}
+{#            {% include "wagtailsnippets/statistics/s2.html" %}#}
+{#        </div>#}
+{#        <div id = "s3" style="height: 500px;width: 500px;float: left">#}
+{#            {% include "wagtailsnippets/statistics/s1.html" %}#}
+{#        </div>#}
+{#        <div id = "s4" style="height: 500px;width: 500px;float: left">#}
+{#            {% include "wagtailsnippets/statistics/s1.html" %}#}
+{#        </div>#}
 
 
-    <!-- 饼状图 -->
-    <p class="title2" style="margin-top: -50px;">纺织布匹次品率</p>
-    <center><br><br><br><br><br>
-    <canvas id="pie1" width="350px" height="350px"></canvas>
 
-    </center>
-    <script src="{% static 'wagtailsnippets/js/total/Charts.js' %}"></script>
-
-    <script type="text/javascript">
-        new Chart("pie1").ratePie({{ defectRate }});//ratePie里的值就是计算出的瑕疵比率
-    </script>
-    <div class="imageLinkTag" style="width: 200px;
-        height: 50px;
-            position: relative;
-            font-size: 30px;
-            text-align: center;
-            margin: -160px 42%;">
-        <a title="点击查看检测详情" href="http://127.0.0.1:8000/admin/images/">
-            <div style="width: 100px;height:50px;">
-            </div>
-        </a>
+        <div style="height: 500px;width: 600px;float: left;margin: 50px">
+            {% include "wagtailsnippets/statistics/s1.html" %}
+        </div>
+        <div style="height: 500px;width: 500px;float: left;margin: 30px">
+            {% include "wagtailsnippets/statistics/s2.html" %}
+        </div>
+        <div style="height: 500px;width: 500px;float: left;margin: 50px">
+{#            {% include "wagtailsnippets/statistics/s1.html" %}#}
+        </div>
+        <div style="height: 500px;width: 500px;float: left;margin: 50px">
+{#            {% include "wagtailsnippets/statistics/s1.html" %}#}
+        </div>
     </div>
 
+{#    <div style="height: 500px;width: 500px; float: left">#}
+{#        {% include "wagtailsnippets/statistics/s1.html" %}#}
+{#    </div>#}
+{##}
+{#    <div style="height: 500px;width: 500px; float: left">#}
+{#        {% include "wagtailsnippets/statistics/s2.html" %}#}
+{#    </div>#}
 
 
 
-    <div class="introduction">
-      <div id="hr1"></div><p id="p1" style="color:black">无瑕疵</p>
-      <div id="hr2"></div><p id="p2" style="color:black">有瑕疵</p>
-      <a class="button" style="margin-left: 40px;margin-top: 190px;" href="http://127.0.0.1:8000/excel_export/?BatchNum={{ curBatchNum }}">
-        导出报表
-      </a>
-    </div>
 
-
-    <div style="text-align:center;clear:both; margin-top:50px">
-    </div>
-
-    <div class="graph1">
-      <p>布匹瑕疵分布图</p>
-    </div>
-
-
-    <div class="container">
-      <div id="skill">
-
-        <!-- data-width后的数值就是该瑕疵类别在所有瑕疵中对应的所占比例（比例加11.5%等于最后的结果） -->
-          {% for cur in orderList %}
-              <div class="skillbar {{ cur.0 }}">
-                  <div class="filled" data-width={{ cur.1 }}%></div>
-                  <span class="title">{{ cur.0 }}</span>
-                  <span class="percent">{% widthratio cur.1|add:-11.5 890 1000 %}</span>
-                <!-- percent这个span标签里的就是显示在每项瑕疵对应横框最后那个所占百分比的数值 -->
-              </div>
-          {% endfor %}
-
-      </div>
-    </div>
     <script src="{% static 'wagtailsnippets/js/total/jquery-1.11.0.min.js' %}"></script>
     <script src="{% static 'wagtailsnippets/js/total/an-skill-bar.js' %}"></script>
     <script src="{% static 'wagtailsnippets/js/total/main.js' %}"></script>

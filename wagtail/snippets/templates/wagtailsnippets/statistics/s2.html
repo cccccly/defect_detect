@@ -1,0 +1,118 @@
+{#<script src="https://cdn.bootcss.com/echarts/4.2.1-rc1/echarts.js"></script>#}
+
+<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+<div id="main2" style="width: 850px;height:700px;"></div>
+<script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    var myChart2 = echarts.init(document.getElementById('main2'));
+
+
+    myChart2.title = '统计分析';
+
+    option1 = {
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b}: {c} ({d}%)"
+        },
+        legend: {
+            orient: 'vertical',
+            x: 'left',
+            data:['油污','停车痕','浆斑','并苇','擦白','擦伤','错花','断经','断苇','尽机','经条','空织','起机','缺苇','缩苇','折返','糙苇','其他']
+        },
+        series: [
+            {
+
+                type:'pie',
+                selectedMode: 'single',
+                radius: [0, '30%'],
+
+                label: {
+                    normal: {
+                        position: 'inner'
+                    }
+                },
+                labelLine: {
+                    normal: {
+                        show: false
+                    }
+                },
+                data:[
+                    {value:1035, name:'油污', selected:true},
+                    {value:779, name:'停车痕'},
+                    {value:568, name:'浆斑'}
+                ]
+            },
+            {
+
+                type:'pie',
+                radius: ['40%', '55%'],
+                label: {
+                    normal: {
+                        formatter: '{a|{a}}{abg|}\n{hr|}\n  {b|{b}：}{c}  {per|{d}%}  ',
+                        backgroundColor: '#eee',
+                        borderColor: '#aaa',
+                        borderWidth: 1,
+                        borderRadius: 4,
+                        // shadowBlur:3,
+                        // shadowOffsetX: 2,
+                        // shadowOffsetY: 2,
+                        // shadowColor: '#999',
+                        // padding: [0, 7],
+                        rich: {
+                            a: {
+                                color: '#999',
+                                lineHeight: 22,
+                                align: 'center'
+                            },
+                            // abg: {
+                            //     backgroundColor: '#333',
+                            //     width: '100%',
+                            //     align: 'right',
+                            //     height: 22,
+                            //     borderRadius: [4, 4, 0, 0]
+                            // },
+                            hr: {
+                                borderColor: '#aaa',
+                                width: '100%',
+                                borderWidth: 0.5,
+                                height: 0
+                            },
+                            b: {
+                                fontSize: 16,
+                                lineHeight: 33
+                            },
+                            per: {
+                                color: '#eee',
+                                backgroundColor: '#334455',
+                                padding: [2, 4],
+                                borderRadius: 2
+                            }
+                        }
+                    }
+                },
+                data:[
+                    {value:1235, name:'油污'},
+                    {value:135, name:'并苇'},
+                    {value:148, name:'擦白'},
+                    {value:251, name:'擦伤'},
+                    {value:13, name:'错花'},
+                    {value:310, name:'停车痕'},
+                    {value:0, name:'断经'},
+                    {value:20, name:'断苇'},
+                    {value:5, name:'尽机'},
+                    {value:98, name:'经条'},
+                    {value:20, name:'空织'},
+                    {value:14, name:'起机'},
+                    {value:107, name:'缺苇'},
+                    {value:30, name:'缩苇'},
+                    {value:410, name:'浆斑'},
+                    {value:107, name:'折返'},
+                    {value:22, name:'糙苇'},
+                    {value:202, name:'其他'}
+                ]
+            }
+        ]
+    };
+// 使用刚指定的配置项和数据显示图表。
+    myChart2.setOption(option1);
+</script>

@@ -16,7 +16,7 @@
                 <div class="avatar"><img src="{% avatar_url user %}" alt="" /></div>
             </div>
             <div class="col9">
-                <h1>{% block branding_welcome %}{% blocktrans %}欢迎进入 {{ site_name }} 纺织布匹表面瑕疵识别系统{% endblocktrans %}{% endblock %}</h1>
+                <h1>{% block branding_welcome %}{% blocktrans %}欢迎进入纺织布匹表面瑕疵识别系统{% endblocktrans %}{% endblock %}</h1>
                 <h2>{{ user.get_full_name|default:user.get_username }}</h2>
             </div>
         </div>

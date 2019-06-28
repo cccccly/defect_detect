@@ -56,7 +56,8 @@ def index(request):
         if hasdefect != 2:
             images = images.filter(HasDefect=hasdefect)
         specs = request.POST['Specs']
-        images = images.filter(Specs=specs)
+        if specs != "全部":
+            images = images.filter(Specs=specs)
 
     # Return current BatchNum Specs
     batchNum = Document.objects.values('BatchNum').distinct()

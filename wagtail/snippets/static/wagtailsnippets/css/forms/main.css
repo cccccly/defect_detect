@@ -1,0 +1,35 @@
+/** {*/
+  /*margin: 0;*/
+  /*padding: 0;*/
+  /*box-sizing: border-box;*/
+/*}*/
+
+*:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  width: 100%;
+  /* margin: 50px auto; */
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+  /*background-color: #fcfcfc;*/
+}
+
+#skill {
+  position: relative;
+  /*border: solid 3px black;*/
+  width: 800px;
+  background-color: #dfdfdf;
+  padding: 30px;
+  display: block;
+  margin: 0 auto;
+  border-radius: 5px;
+
+}
+
+/*h2{*/
+  /*margin: 20px;*/
+  /*text-align: center;*/
+  /*font-weight: 700;*/
+/*}*/

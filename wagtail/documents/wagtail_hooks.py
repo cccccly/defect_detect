@@ -46,21 +46,21 @@ class DocumentsMenuItem(MenuItem):
 @hooks.register('register_admin_menu_item')
 def register_documents_menu_item():
     return DocumentsMenuItem(
-        _('Documents'),
+        _('查看文档'),
         reverse('wagtaildocs:index'),
         name='documents',
         classnames='icon icon-doc-full-inverse',
-        order=400
+        order=40
     )
 #shangchuan
 @hooks.register('register_admin_menu_item')
 def register_documents_menu_item():
     return DocumentsMenuItem(
-        _('文档上传'),
+        _('上传说明文档'),
         reverse('wagtaildocs:add_multiple'),
         name='documents',
-        classnames='icon icon-doc-full-inverse',
-        order=400
+        classnames='icon icon-folder-open-inverse',
+        order=10
     )
 
 @hooks.register('insert_editor_js')

@@ -30,6 +30,7 @@
 
         <label for="Specs">产品规格</label>
         <select name="Specs" id="Specs">
+            <option value="全部">全部</option>
             {% for cur in Specs %}
                 <option value={{ cur }}>{{ cur }}</option>
             {% endfor %}

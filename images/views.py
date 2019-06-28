@@ -160,7 +160,7 @@ class Unit(nn.Module):
 
 
 class CNN(nn.Module):  #定义64层的深度神经网络结构
-    def __init__(self,num_classes=22):
+    def __init__(self,num_classes=21):
         super(CNN, self).__init__()
 
         self.unit1 = Unit(in_channels=3, out_channels=32)  #(32,32,32)
@@ -193,7 +193,7 @@ class CNN(nn.Module):  #定义64层的深度神经网络结构
                                  self.unit7, self.pool2, self.unit8, self.unit9, self.unit10, self.unit11, self.pool3,
                                  self.unit12, self.unit13, self.unit14, self.avgpool)
 
-        self.out = nn.Linear(128, 22)
+        self.out = nn.Linear(128, 21)
 
 
     def forward(self, input):
@@ -204,7 +204,7 @@ class CNN(nn.Module):  #定义64层的深度神经网络结构
 
 checkpoint = torch.load(os.path.dirname(os.path.dirname(__file__))+'/media/cnn_params.pkl')
 #导入训练好的模型参数
-model = CNN(num_classes = 22)
+model = CNN(num_classes = 21)
 model.load_state_dict(checkpoint)
 model.eval()
 
@@ -289,19 +289,27 @@ def detect(request):
            '4': "并纬", '5': "折返", '6': "擦伤", '7': "擦白", '8': "断纬",
            '9': "断经1", '10': "断经2", '11': "油污", '12': "浆斑",
            '13': "空织", '14': "糙纬", '15': "经条", '16': "缩纬",
-           '17': "缺纬1", '18': "缺纬2", '19': "起机", '20': "错花", '21': "无瑕疵"}
+           '17': "缺纬1", '18': "缺纬2", '19': "起机", '20': "错花"}
 
     mediaPath = os.path.dirname(os.path.dirname(__file__))+'/media'
 
     images = CustomImage.objects.filter(IsDetect=False)
-    avg = 1 / images.count()
+    cnt = images.count()
+    res = {
+        'flag': 1
+    }
+    flag = 0
+    if cnt == 0:
+        return JsonResponse(res)
+    avg = 1 / cnt
 
     global num_progress
-
-
+    num_progress = 0
 
     for cur in images:
         global extension_ratio
+        num_progress = num_progress + avg
+
         extension_ratio = 1
         specs = "未检测"
         batchNum = "未检测"
@@ -369,6 +377,8 @@ def detect(request):
 
 
         if num > 0:
+            # if (cur.BatchNum == '179100'):
+            #     continue
             hasDefect = True
             # 取主要瑕疵区域
             c = sorted(contours, key=cv2.contourArea, reverse=True)[0]
@@ -461,7 +471,7 @@ def detect(request):
             elif cur.DefectType == "其他":
                 scur.QT += 1
         scur.save()
-        num_progress = num_progress + avg
+
     images = CustomImage.objects.all()
 
     batchNum = Document.objects.values('BatchNum').distinct()
@@ -487,15 +497,17 @@ def detect(request):
     #
     #         'user_can_add': permission_policy.user_has_permission(request.user, 'add'),
     #     })
-    return render(request, 'index.html', {
-        'res' : 1,
-    })
+    flag = 1
+    return JsonResponse(res)
+
 
 def progress(request):
-    return JsonResponse(num_progress*100, safe=False)
+    return JsonResponse(int(num_progress*100), safe=False)
 
 
 def index(request):
+    images = CustomImage.objects.filter(IsDetect=False)
+    cnt = images.count()
     return render(request, 'index.html', {
-
+            'cnt': cnt
         })

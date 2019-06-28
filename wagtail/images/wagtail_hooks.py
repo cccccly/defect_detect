@@ -41,16 +41,16 @@ class ImagesMenuItem(MenuItem):
 @hooks.register('register_admin_menu_item')
 def register_images_menu_item():
     return ImagesMenuItem(
-        _('Images'), reverse('wagtailimages:index'),
-        name='images', classnames='icon icon-image', order=300
+        _('检测结果'), reverse('wagtailimages:index'),
+        name='images', classnames='icon icon-pilcrow', order=300
     )
 
 #shangchuan
 @hooks.register('register_admin_menu_item')
 def register_images_menu_item():
     return ImagesMenuItem(
-        _('图片上传'), reverse('wagtailimages:add_multiple'),
-        name='images', classnames='icon icon-image', order=50
+        _('上传抓拍图像'), reverse('wagtailimages:add_multiple'),
+        name='images', classnames='icon icon-image', order=100
     )
 
 

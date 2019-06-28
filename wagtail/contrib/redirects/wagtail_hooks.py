@@ -23,11 +23,11 @@ class RedirectsMenuItem(MenuItem):
         )
 
 
-@hooks.register('register_settings_menu_item')
-def register_redirects_menu_item():
-    return RedirectsMenuItem(
-        _('Redirects'), reverse('wagtailredirects:index'), classnames='icon icon-redirect', order=800
-    )
+# @hooks.register('register_settings_menu_item')
+# def register_redirects_menu_item():
+#     return RedirectsMenuItem(
+#         _('Redirects'), reverse('wagtailredirects:index'), classnames='icon icon-redirect', order=800
+#     )
 
 
 @hooks.register('register_permissions')

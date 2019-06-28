@@ -1,0 +1,159 @@
+/*
+    * Plugin :  an-skill-bar
+    * Version: 1.0.1
+    * Description: A plugin that fills bars with a percentage you set.
+    * Author: Hasan Misbah
+    * Copyright 2018, Hasan Misbah
+    * Free to use and abuse under the MIT license.
+    * http://www.opensource.org/licenses/mit-license.php
+    */
+.skillbar{
+width:100%;
+padding:10px;
+margin:10px 0;
+position:relative;
+display:block;
+overflow:hidden;
+height:30px;
+background-color:#fff;
+border-radius:5px 0 0 5px
+}
+.skillbar.bingwei .title{
+background-color:#42b1b0
+}
+.skillbar.bingwei .filled{
+background-color:#6cc0bd
+}
+.skillbar.youwu .title{
+background-color:#f0b517
+}
+.skillbar.youwu .filled{
+background-color:#f8e5b1
+}
+.skillbar.cabai .title{
+background-color:#02d6de
+}
+.skillbar.cabai .filled{
+background-color:#ace7e9
+}
+
+.skillbar.cashang .title{
+background-color:#017499
+}
+.skillbar.cashang .filled{
+background-color:#558899
+}
+.skillbar.tingchehen .title{
+background-color:#ec7266
+}
+.skillbar.tingchehen .filled{
+background-color:#f3a5a0
+}
+.skillbar.caowei .title{
+background-color:#2cc0a6
+}
+.skillbar.caowei .filled{
+background-color:#9addc6
+}
+.skillbar.cuohua .title{
+background-color:#83618c
+}
+.skillbar.cuohua .filled{
+background-color:#cc8eb6
+}
+
+
+.skillbar.duanjing .title{
+background-color:#33c7f0
+}
+.skillbar.duanjing .filled{
+background-color:#7adbf5
+}
+.skillbar.duanwei .title{
+background-color:#456e46
+}
+.skillbar.duanwei .filled{
+background-color:#92af84
+}
+.skillbar.jiangban .title{
+background-color:#cc872e
+}
+.skillbar.jiangban .filled{
+background-color:#d5b38b
+}
+.skillbar.jinji .title{
+background-color:#1abc9c
+}
+.skillbar.jinji .filled{
+background-color:#dbfaf4
+}
+.skillbar.jingtiao .title{
+background-color:#6ab0de
+}
+.skillbar.jingtiao .filled{
+background-color:#e7f2fa
+}
+.skillbar.kongzhi .title{
+background-color:#dc80bf
+}
+.skillbar.kongzhi .filled{
+background-color:#fec3ed
+}
+.skillbar.qiji .title{
+background-color:#28917c
+}
+.skillbar.qiji .filled{
+background-color:#6ea298
+}
+.skillbar.quewei .title{
+background-color:#68cb4e
+}
+.skillbar.quewei .filled{
+background-color:#ace1a1
+}
+
+.skillbar.suowei .title{
+background-color:#3f4e74
+}
+.skillbar.suowei .filled{
+background-color:#6e76a2
+}
+.skillbar.zhefan .title{
+background-color:#5c5f5f
+}
+.skillbar.zhefan .filled{
+background-color:#b2caca
+}
+
+
+.skillbar .title{
+background-color:rgba(0,0,0,.6);
+height:30px;
+width:85px;
+text-align:center;
+left:0;
+color:#f0f0f0;
+border-radius:5px 0 0 5px
+}
+.skillbar .percent,.skillbar .title{
+padding:5px;
+position:absolute;
+top:0;
+z-index:9
+}
+.skillbar .percent{
+right:0;
+color:#000;
+font-weight:700
+}
+.skillbar .filled{
+z-index:8;
+position:absolute;
+top:0;
+left:0;
+background-color:rgba(0,80,80,.3);
+height:100%;
+width:20px;
+border-radius:5px 0 0 5px}
+
+/*# sourceMappingURL=an-skill-bar.css.map */

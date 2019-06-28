@@ -16,8 +16,8 @@ from wagtail.admin.menu import MenuItem,SubmenuMenuItem
 @hooks.register('register_admin_menu_item')
 def register_images_menu_item():
     return MenuItem(
-        ('检测'), reverse('index'),
-        name='images', classnames='icon icon-image', order=300
+        ('开始检测'), reverse('index'),
+        name='images', classnames='icon icon-search', order=300
     )
 
 

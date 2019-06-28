@@ -27,7 +27,7 @@ class SnippetsMenuItem(MenuItem):
 @hooks.register('register_admin_menu_item')
 def register_snippets_menu_item():
     return SnippetsMenuItem(
-        _('Snippets'),
+        _('统计分析'),
         reverse('wagtailsnippets:index'),
         classnames='icon icon-snippet',
         order=500

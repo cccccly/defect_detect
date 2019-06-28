@@ -90,6 +90,7 @@ def index(request):
         "糙纬": 11.5,
     }
     # filter
+    curStatics = StaticsDetail.objects.all()
     if (request.POST):
         batchnum = request.POST['BatchNum']
         curStatics = StaticsDetail.objects.get(BatchNum=batchnum)

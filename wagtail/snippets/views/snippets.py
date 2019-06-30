@@ -18,6 +18,9 @@ from wagtail.search.index import class_is_indexed
 from wagtail.snippets.models import get_snippet_models
 from wagtail.snippets.permissions import get_permission_name, user_can_edit_snippet_type
 from dataAnalyze.models import StaticsDetail
+from wagtail.snippets.forms import StatisticsForm
+from django.http import HttpResponseRedirect
+
 
 # == Helper functions ==
 def get_snippet_model_from_url_params(app_name, model_name):
@@ -118,6 +121,14 @@ def index(request):
             }
         defectRate = int(curStatics.DefectCount/curStatics.CountAll*100)
     orderList = sorted(dic.items(), key=lambda item: item[1], reverse=True)
+
+    if request.method == 'POST':
+        form = StatisticsForm(request.POST)
+        if form.is_valid():
+            return HttpResponseRedirect('/thanks/')
+    else:
+        form = StatisticsForm()
+
     return render(request, 'wagtailsnippets/snippets/index.html', {
         'snippet_model_opts': sorted(
             snippet_model_opts, key=lambda x: x.verbose_name.lower()),
@@ -125,6 +136,7 @@ def index(request):
         'orderList': orderList,
         'defectRate': defectRate,
         'curBatchNum': curBatchNum,
+        'form': form,
         })
 
 

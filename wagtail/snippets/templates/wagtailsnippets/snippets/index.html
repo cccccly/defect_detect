@@ -13,65 +13,70 @@
     {% include "wagtailadmin/shared/header.html" with title=snippets_str icon="snippet" %}
 
 
+{#    <form action="{% url 'wagtailsnippets:index' %}" method="post" enctype="multipart/form-data" novalidate style="margin: 0px 100px 0px 100px">#}
+{#        {% csrf_token %}#}
+{#        <label for="BatchNum">产品编号</label>#}
+{#        <select name="BatchNum" id="BatchNum">#}
+{#            {% for cur in BatchNums %}#}
+{#                {% if cur == curBatchNum %}#}
+{#                    <option value={{ cur }} selected="selected">{{ cur }}</option>#}
+{#                {% else %}#}
+{#                    <option value={{ cur }}>{{ cur }}</option>#}
+{#                {% endif %}#}
+{##}
+{#            {% endfor %}#}
+{#        </select>#}
+{#        {% include "django/forms/widgets/date.html" %}#}
+{#        <br>#}
+{#        <br>#}
+{#        <div class="u-hidden@xs" id="sbm">#}
+{#            <input type="submit" value="{% trans '筛选' %}" class="button" />#}
+{#        </div>#}
+{#        <br>#}
+{#    </form>#}
     <form action="{% url 'wagtailsnippets:index' %}" method="post" enctype="multipart/form-data" novalidate style="margin: 0px 100px 0px 100px">
         {% csrf_token %}
-        <label for="BatchNum">产品编号</label>
-        <select name="BatchNum" id="BatchNum">
-            {% for cur in BatchNums %}
-                {% if cur == curBatchNum %}
-                    <option value={{ cur }} selected="selected">{{ cur }}</option>
-                {% else %}
-                    <option value={{ cur }}>{{ cur }}</option>
-                {% endif %}
-
-            {% endfor %}
-        </select>
-        <br>
-        <br>
-        <div class="u-hidden@xs" id="sbm">
-            <input type="submit" value="{% trans '筛选' %}" class="button" />
+        <div class="row row-flush nice-padding">
+            <div class="col6">
+                <ul class="fields">
+                    {% for field in form %}
+                        {% if field.name == 'file' %}
+                            {% include "wagtailimages/images/_file_field_as_li.html" with li_classes="label-above label-uppercase" %}
+                        {% elif field.is_hidden %}
+                            {{ field }}
+                        {% else %}
+                            {% include "wagtailadmin/shared/field_as_li.html" with li_classes="label-above label-uppercase" %}
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+                <div class="u-hidden@xs">
+                    <input type="submit" value="{% trans '选择' %}" class="button" />
+                </div>
+            </div>
         </div>
-        <br>
     </form>
 
+{#    <form action="{% url 'wagtailsnippets:index' %}">#}
+{#        {% csrf_token %}#}
+{#        {{ form }}#}
+{#        <input type="submit" value="Submit">#}
+{#    </form>#}
+
+{#    统计图表#}
     <div style="height: 1200px;width: 1400px;">
-{#        <div id = "s1" style="height: 500px;width: 500px;float: left">#}
-{#            {% include "wagtailsnippets/statistics/s1.html" %}#}
-{#        </div>#}
-{#        <div id = "s2" style="height: 500px;width: 500px;float: left">#}
-{#            {% include "wagtailsnippets/statistics/s2.html" %}#}
-{#        </div>#}
-{#        <div id = "s3" style="height: 500px;width: 500px;float: left">#}
-{#            {% include "wagtailsnippets/statistics/s1.html" %}#}
-{#        </div>#}
-{#        <div id = "s4" style="height: 500px;width: 500px;float: left">#}
-{#            {% include "wagtailsnippets/statistics/s1.html" %}#}
-{#        </div>#}
-
-
-
-        <div style="height: 500px;width: 600px;float: left;margin: 50px">
+        <div style="height: 500px;width: 600px;float: left;margin-top: 50px;margin-left: 50px">
             {% include "wagtailsnippets/statistics/s1.html" %}
         </div>
-        <div style="height: 500px;width: 500px;float: left;margin: 30px">
+        <div style="height: 500px;width: 500px;float: left;margin-top:-20px;margin-left: 50px">
             {% include "wagtailsnippets/statistics/s2.html" %}
         </div>
-        <div style="height: 500px;width: 500px;float: left;margin: 50px">
-{#            {% include "wagtailsnippets/statistics/s1.html" %}#}
+        <div style="height: 500px;width: 700px;float: left; margin: 50px">
+           {% include "wagtailsnippets/statistics/s4.html" %}
         </div>
-        <div style="height: 500px;width: 500px;float: left;margin: 50px">
-{#            {% include "wagtailsnippets/statistics/s1.html" %}#}
+        <div style="height: 500px;width: 500px;float: left;margin-top:140px;margin-left: 50px">
+           {% include "wagtailsnippets/statistics/s3.html" %}
         </div>
     </div>
-
-{#    <div style="height: 500px;width: 500px; float: left">#}
-{#        {% include "wagtailsnippets/statistics/s1.html" %}#}
-{#    </div>#}
-{##}
-{#    <div style="height: 500px;width: 500px; float: left">#}
-{#        {% include "wagtailsnippets/statistics/s2.html" %}#}
-{#    </div>#}
-
 
 
 

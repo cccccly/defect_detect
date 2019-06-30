@@ -1,0 +1,151 @@
+<div id="main4" style="width: 650px;height:550px;"></div>
+<script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    var myChart4 = echarts.init(document.getElementById('main4'));
+
+    // 指定图表的配置项和数据
+    option = {
+    title: {
+        text: ''
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data:['油污','停车痕','浆斑','并纬','擦白','擦伤','错花','断经','断纬','尽机','经条','空织','起机','缺纬','缩纬','折返','糙纬','其他']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['周一','周二','周三','周四','周五','周六','周日']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name:'并纬',
+            type:'line',
+            stack: '总量',
+            data:[5, 13, 7, 2, 0, 0, 11]
+        },
+        {
+            name:'擦白',
+            type:'line',
+            stack: '总量',
+            data:[0, 0, 1, 4, 2, 2, 3]
+        },
+        {
+            name:'擦伤',
+            type:'line',
+            stack: '总量',
+            data:[5, 11, 15, 13, 9, 4, 5]
+        },
+        {
+            name:'错花',
+            type:'line',
+            stack: '总量',
+            data:[1, 0, 0, 0, 3, 4, 3]
+        },
+        {
+            name:'断经',
+            type:'line',
+            stack: '总量',
+            data:[12, 18, 11, 9, 2, 3, 10]
+        },
+        {
+            name:'断纬',
+            type:'line',
+            stack: '总量',
+            data:[2, 8, 1, 3, 4, 3, 0]
+        },
+        {
+            name:'尽机',
+            type:'line',
+            stack: '总量',
+            data:[0, 0, 1, 0, 2, 3, 0]
+        },
+        {
+            name:'经条',
+            type:'line',
+            stack: '总量',
+            data:[1, 12, 11, 3, 12, 33, 10]
+        },
+        {
+            name:'空织',
+            type:'line',
+            stack: '总量',
+            data:[5, 4, 9, 3, 12, 13, 11]
+        },
+        {
+            name:'起机',
+            type:'line',
+            stack: '总量',
+            data:[2, 18, 0, 2, 9, 3, 10]
+        },{
+            name:'缺纬',
+            type:'line',
+            stack: '总量',
+            data:[0, 12, 11, 23, 9, 3, 1]
+        },
+        {
+            name:'缩纬',
+            type:'line',
+            stack: '总量',
+            data:[0, 2, 1, 4, 0, 3, 3]
+        },
+          {
+            name:'折返',
+            type:'line',
+            stack: '总量',
+            data:[6, 8, 9, 4, 9, 3, 3]
+        },
+          {
+            name:'糙纬',
+            type:'line',
+            stack: '总量',
+            data:[2, 8, 9, 4, 9, 3, 1]
+        },
+          {
+            name:'其他',
+            type:'line',
+            stack: '总量',
+            data:[22, 18, 19, 24, 29, 33, 31]
+        },
+
+
+        {
+            name:'浆斑',
+            type:'line',
+            stack: '总量',
+            data:[75, 66, 42, 54, 90, 70, 41]
+        },
+        {
+            name:'油污',
+            type:'line',
+            stack: '总量',
+            data:[190, 92, 131, 134, 120, 214, 158]
+        },
+        {
+            name:'停车痕',
+            type:'line',
+            stack: '总量',
+            data:[82, 131, 90, 93, 129, 153, 132]
+        }
+    ]
+};
+
+    // 使用刚指定的配置项和数据显示图表。
+    myChart4.setOption(option);
+</script>
